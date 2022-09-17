@@ -1,5 +1,7 @@
 # What The Hack - Traffic Control with Dapr
 
+⭐️ [Challenges completed](/Student/ChallengesCompleted.md)
+
 ## Introduction
 This hack contains several hands-on challenges that will introduce you to [Dapr](https://dapr.io/). You will start with a simple ASP.NET Core application that is composed of several microservices. In each challenge, you'll enhance the application by adding Dapr building blocks and components. At the same time, you'll configure the application to consume Azure-based backing services. When complete, you'll have implemented the following Dapr building blocks:
 
