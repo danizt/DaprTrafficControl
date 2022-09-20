@@ -1,10 +1,21 @@
+using Dapr.Client;
+
 // create web-app
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<IFineCalculator, HardCodedFineCalculator>();
 
-builder.Services.AddHttpClient();
-builder.Services.AddSingleton<VehicleRegistrationService>();
+// builder.Services.AddHttpClient();
+// builder.Services.AddSingleton<VehicleRegistrationService>();
+
+var daprHttpPort = Environment.GetEnvironmentVariable("DAPR_HTTP_PORT") ?? "3602";
+builder.Services.AddSingleton<VehicleRegistrationService>(_ => 
+    new VehicleRegistrationService(
+        DaprClient.CreateInvokeHttpClient(
+            "vehicleregistrationservice", $"http://localhost:{daprHttpPort}"
+        )
+    )
+);
 
 builder.Services.AddControllers();
 
